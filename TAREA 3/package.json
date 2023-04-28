@@ -1,0 +1,66 @@
+//Modelo de Idioma
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const idiomaSchema = new Schema({
+  id: Number,
+  descripcion: String
+});
+
+module.exports = mongoose.model('Idioma', idiomaSchema);
+
+//Modelo de Instructor
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const instructorSchema = new Schema({
+  id: Number,
+  nombre: String,
+  fechaNacimiento: Date,
+  experiencia: Number
+});
+
+module.exports = mongoose.model('Instructor', instructorSchema);
+
+//Modelo de Aprendizaje
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+const aprendizajeSchema = new Schema({
+  id: Number,
+  idioma: { type: Schema.Types.ObjectId, ref: 'Idioma' },
+  instructor: { type: Schema.Types.ObjectId, ref: 'Instructor' },
+  fecha: Date,
+  hora: String,
+  numeroHoras: Number,
+  nivel: Number
+});
+
+module.exports = mongoose.model('Aprendizaje', aprendizajeSchema);
+
+const mongoose = require('mongoose');
+
+const idiomaSchema = new mongoose.Schema({
+  descripcion: {
+    type: String,
+    required: true
+  }
+});
+
+const instructorSchema = new mongoose.Schema({
+  nombre: {
+    type: String,
+    required: true
+  },
+  fechaNacimiento: {
+    type: Date,
+    required: true
+  },
+  experiencia: {
+    type: Number,
+    required: true
+  }
+});
+
+const Idioma = mongoose.model('Idioma', idiomaSchema);
+const Instructor = mongoose.model('Instructor', instructorSchema);
