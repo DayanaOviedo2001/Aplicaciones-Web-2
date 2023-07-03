@@ -1,0 +1,51 @@
+version: '3'
+
+
+services:
+  cliente:
+    build: ./cliente
+    depends_on:
+      - datacliente
+    environment:
+      - PORT=2500
+      - MONGODB_CNN=mongodb://datacliente:27017/test
+    # ports:
+    #   - "2000:2000"
+  concepto:
+    build: ./concepto
+    depends_on:
+      - dataconcepto
+    environment:
+      - PORT=2500
+      - MONGODB_CNN=mongodb://dataconcepto:27017/test
+  pago:
+    build: ./pago
+    depends_on:
+      - datapago
+    environment:
+      - PORT=2500
+      - MONGODB_CNN=mongodb://datapago:27017/test
+
+  datacliente:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+  dataconcepto:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+  datapago:
+    image: mongo
+    # ports:
+    #   - "27017:27017"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "4500:4500"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - cliente
+      - concepto
+      - pago
