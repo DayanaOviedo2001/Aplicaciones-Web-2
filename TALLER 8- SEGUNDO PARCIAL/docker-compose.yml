@@ -8,7 +8,7 @@ services:
       - dataidioma
     environment:
       - PORT=2500
-      - MONGODB_CNN=mongodb://datacliente:27017/test
+      - MONGODB_CNN=mongodb://dataidioma:27017/test
     # ports:
     #   - "2000:2000"
   concepto:
@@ -24,7 +24,7 @@ services:
       - dataaprendizaje
     environment:
       - PORT=2500
-      - MONGODB_CNN=mongodb://datapago:27017/test
+      - MONGODB_CNN=mongodb://dataaprendizaje:27017/test
 
   datacliente:
     image: mongo
