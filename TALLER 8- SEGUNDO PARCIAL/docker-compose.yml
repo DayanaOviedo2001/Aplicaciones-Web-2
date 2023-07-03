@@ -3,9 +3,9 @@ version: '3'
 
 services:
   cliente:
-    build: ./cliente
+    build: ./idioma
     depends_on:
-      - datacliente
+      - dataidioma
     environment:
       - PORT=2500
       - MONGODB_CNN=mongodb://datacliente:27017/test
@@ -19,9 +19,9 @@ services:
       - PORT=2500
       - MONGODB_CNN=mongodb://dataconcepto:27017/test
   pago:
-    build: ./pago
+    build: ./aprendizaje
     depends_on:
-      - datapago
+      - dataaprendizaje
     environment:
       - PORT=2500
       - MONGODB_CNN=mongodb://datapago:27017/test
